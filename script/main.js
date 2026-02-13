@@ -6,11 +6,11 @@ const animationTimeline = () => {
 
   textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML
     .split("")
-    .join("</span><span>")}</span`;
+    .join("</span><span>")}</span>`;
 
   hbd.innerHTML = `<span>${hbd.innerHTML
     .split("")
-    .join("</span><span>")}</span`;
+    .join("</span><span>")}</span>`;
 
   const ideaTextTrans = {
     opacity: 0,
@@ -26,7 +26,7 @@ const animationTimeline = () => {
     skewX: "-15deg",
   };
 
-  const tl = new TimelineMax();
+  const tl = new TimelineMax({ paused: true }); // Pause timeline initially
 
   tl.to(".container", 0.1, {
     visibility: "visible",
@@ -60,7 +60,6 @@ const animationTimeline = () => {
     .from(".three", 0.7, {
       opacity: 0,
       y: 10,
-      // scale: 0.7
     })
     .to(
       ".three",
@@ -205,7 +204,6 @@ const animationTimeline = () => {
       {
         opacity: 0,
         y: -50,
-        // scale: 0.3,
         rotation: 150,
         skewX: "30deg",
         ease: Elastic.easeOut.config(1, 0.5),
@@ -265,14 +263,39 @@ const animationTimeline = () => {
       "+=1"
     );
 
-  // tl.seek("currentStep");
-  // tl.timeScale(2);
+  // Function to play audio
+  const playAudio = () => {
+    const audio = document.getElementById("audio");
+    audio.muted = false;
+    audio.currentTime = 0; // Reset audio to start
+    audio
+      .play()
+      .then(() => {
+        console.log("Audio playing successfully");
+      })
+      .catch((error) => {
+        console.error("Error playing audio:", error);
+      });
+  };
 
-  // Restart Animation on click
+  // Start both animation and audio
+  const startExperience = () => {
+    document.getElementById("playButton").style.display = "none"; // Hide play button
+    tl.play(); // Start animation
+    playAudio(); // Start audio
+  };
+
+  // Handle play button click
+  document.getElementById("playButton").addEventListener("click", startExperience);
+
+  // Restart both animation and audio on replay click
   const replyBtn = document.getElementById("replay");
   replyBtn.addEventListener("click", () => {
-    tl.restart();
+    tl.restart(); // Restart animation
+    playAudio(); // Restart audio
   });
+
+  return tl; // Return timeline for external control if needed
 };
 
 // Import the data to customize and insert them into page
@@ -294,7 +317,7 @@ const fetchData = () => {
     });
 };
 
-// Run fetch and animation in sequence
+// Run fetch and initialize animation
 const resolveFetch = () => {
   return new Promise((resolve, reject) => {
     fetchData();
@@ -302,4 +325,7 @@ const resolveFetch = () => {
   });
 };
 
-resolveFetch().then(animationTimeline());
+// Initialize animation after fetch
+resolveFetch().then(() => {
+  animationTimeline();
+});
