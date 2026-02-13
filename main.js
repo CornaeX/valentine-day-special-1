@@ -6,22 +6,8 @@ const buildCharacterSpans = (element) => {
 };
 
 const animationTimeline = () => {
-<<<<<<< HEAD
-  // Spit chars that needs to be animated individually
-  const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
-  const hbd = document.getElementsByClassName("wish-hbd")[0];
-
-  textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML
-    .split("")
-    .join("</span><span>")}</span>`;
-
-  hbd.innerHTML = `<span>${hbd.innerHTML
-    .split("")
-    .join("</span><span>")}</span>`;
-=======
   buildCharacterSpans(document.querySelector(".hbd-chatbox"));
   buildCharacterSpans(document.querySelector(".wish-hbd"));
->>>>>>> ec6fee557a8a65bbecab8c36e5bcb0852b1f6520
 
   const ideaTextTrans = {
     opacity: 0,
@@ -37,7 +23,7 @@ const animationTimeline = () => {
     skewX: "-15deg",
   };
 
-  const tl = new TimelineMax({ paused: true }); // Pause timeline initially
+  const tl = new TimelineMax();
 
   tl.to(".container", 0.1, {
     visibility: "visible",
@@ -50,68 +36,6 @@ const animationTimeline = () => {
       opacity: 0,
       y: 10,
     })
-<<<<<<< HEAD
-    .to(
-      ".one",
-      0.7,
-      {
-        opacity: 0,
-        y: 10,
-      },
-      "+=2.5"
-    )
-    .to(
-      ".two",
-      0.7,
-      {
-        opacity: 0,
-        y: 10,
-      },
-      "-=1"
-    )
-    .from(".three", 0.7, {
-      opacity: 0,
-      y: 10,
-    })
-    .to(
-      ".three",
-      0.7,
-      {
-        opacity: 0,
-        y: 10,
-      },
-      "+=2"
-    )
-    .from(".four", 0.7, {
-      scale: 0.2,
-      opacity: 0,
-    })
-    .from(".fake-btn", 0.3, {
-      scale: 0.2,
-      opacity: 0,
-    })
-    .staggerTo(
-      ".hbd-chatbox span",
-      0.5,
-      {
-        visibility: "visible",
-      },
-      0.05
-    )
-    .to(".fake-btn", 0.1, {
-      backgroundColor: "rgb(127, 206, 248)",
-    })
-    .to(
-      ".four",
-      0.5,
-      {
-        scale: 0.2,
-        opacity: 0,
-        y: -150,
-      },
-      "+=0.7"
-    )
-=======
     .to(".one", 0.7, { opacity: 0, y: 10 }, "+=2.5")
     .to(".two", 0.7, { opacity: 0, y: 10 }, "-=1")
     .from(".three", 0.7, { opacity: 0, y: 10 })
@@ -121,7 +45,6 @@ const animationTimeline = () => {
     .staggerTo(".hbd-chatbox span", 0.5, { visibility: "visible" }, 0.05)
     .to(".fake-btn", 0.1, { backgroundColor: "rgb(127, 206, 248)" })
     .to(".four", 0.5, { scale: 0.2, opacity: 0, y: -150 }, "+=0.7")
->>>>>>> ec6fee557a8a65bbecab8c36e5bcb0852b1f6520
     .from(".idea-1", 0.7, ideaTextTrans)
     .to(".idea-1", 0.7, ideaTextTransLeave, "+=1.5")
     .from(".idea-2", 0.7, ideaTextTrans)
@@ -232,82 +155,14 @@ const animationTimeline = () => {
     .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
     .to(".last-smile", 0.5, { rotation: 90 }, "+=1");
 
-<<<<<<< HEAD
-  // Function to play audio
-  const playAudio = () => {
-    const audio = document.getElementById("audio");
-    audio.muted = false;
-    audio.currentTime = 0; // Reset audio to start
-    audio
-      .play()
-      .then(() => {
-        console.log("Audio playing successfully");
-      })
-      .catch((error) => {
-        console.error("Error playing audio:", error);
-      });
-  };
-
-  // Start both animation and audio
-  const startExperience = () => {
-    document.getElementById("playButton").style.display = "none"; // Hide play button
-    tl.play(); // Start animation
-    playAudio(); // Start audio
-  };
-
-  // Handle play button click
-  document.getElementById("playButton").addEventListener("click", startExperience);
-
-  // Restart both animation and audio on replay click
-  const replyBtn = document.getElementById("replay");
-  replyBtn.addEventListener("click", () => {
-    tl.restart(); // Restart animation
-    playAudio(); // Restart audio
-  });
-
-  return tl; // Return timeline for external control if needed
-};
-
-// Import the data to customize and insert them into page
-const fetchData = () => {
-  fetch("customize.json")
-    .then((data) => data.json())
-    .then((data) => {
-      Object.keys(data).map((customData) => {
-        if (data[customData] !== "") {
-          if (customData === "imagePath") {
-            document
-              .getElementById(customData)
-              .setAttribute("src", data[customData]);
-          } else {
-            document.getElementById(customData).innerText = data[customData];
-          }
-        }
-      });
-=======
   const replayBtn = document.getElementById("replay");
   if (replayBtn) {
     replayBtn.addEventListener("click", () => {
       tl.restart();
->>>>>>> ec6fee557a8a65bbecab8c36e5bcb0852b1f6520
     });
   }
 };
 
-<<<<<<< HEAD
-// Run fetch and initialize animation
-const resolveFetch = () => {
-  return new Promise((resolve, reject) => {
-    fetchData();
-    resolve("Fetch done!");
-  });
-};
-
-// Initialize animation after fetch
-resolveFetch().then(() => {
-  animationTimeline();
-});
-=======
 const applyCustomization = (customData) => {
   Object.entries(customData).forEach(([key, value]) => {
     if (value === "") return;
@@ -345,4 +200,3 @@ const initializePage = async () => {
 };
 
 initializePage();
->>>>>>> ec6fee557a8a65bbecab8c36e5bcb0852b1f6520

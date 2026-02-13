@@ -1,39 +1,90 @@
-<h1 align="center">
-    Happy Valentine Day :)
-</h1>
+# Valentine Day Special 💘
 
-## Valentine's Day Special 💖
-Welcome to the Valentine's Day Special repository! This project is a simple web page designed to celebrate Valentine's Day with your loved ones. It features a heartfelt message, animated balloons, and a special song to set the mood.
+A customizable Valentine-themed web page with timeline-based animations, floating balloons, and background music.
 
 ## Features
-Personalized greeting with the recipient's name.
-Animated balloons and decorative elements.
-Heartwarming message to express your feelings.
-Embedded audio player with a romantic song.
-Easy customization for adding your own touch.
 
-## Usage
-Clone the repository to your local machine:
+- ✨ GSAP-powered sequential story animation.
+- 🎵 Optional background music playback.
+- 🖼️ Easy personalization via a single `customize.json` file.
+- 📱 Responsive CSS for desktop and mobile screens.
+- 🔁 Replay support without reloading the page.
 
-`git clone https://github.com/swapniltake1/valentine-day-special.git`
+## Tech Stack
 
-Open index.html in your web browser.
-Enjoy the Valentine's Day Special with your loved ones!
+- HTML5
+- CSS3
+- JavaScript (ES6)
+- [GSAP TweenMax 1.x](https://cdnjs.com/libraries/gsap)
 
-## Customize
-Feel free to customize the content to suit your preferences:
+## Project Structure
 
-Greeting: Modify the greeting message in index.html.
+```text
+.
+├── customize.json       # Editable content (name, wish text, image)
+├── index.html           # Main page markup
+├── script/main.js       # Animation and personalization logic
+├── style/style.css      # Styles and responsive rules
+├── img/                 # Visual assets
+└── song/song.mp3        # Background audio
+```
 
-Song: Replace the existing song (song.mp3) with your preferred romantic track.
+## Getting Started
 
-Images: Add or replace images in the img directory to personalize the experience.
+### 1) Clone the repository
 
+```bash
+git clone https://github.com/swapniltake1/valentine-day-special.git
+cd valentine-day-special
+```
+
+### 2) Install dependencies
+
+```bash
+npm install
+```
+
+### 3) Run locally
+
+```bash
+npm start
+```
+
+The app runs using BrowserSync on port `7777`.
+
+## Customization
+
+Edit `customize.json`:
+
+```json
+{
+  "name": "Your Name",
+  "greetingText": "I really like your name btw!",
+  "wishText": "Your custom message here",
+  "imagePath": "img/vector.jpg"
+}
+```
+
+### Change music
+
+Replace `song/song.mp3` with your preferred audio file.
+
+### Change images
+
+Replace files in `img/` and update `imagePath` in `customize.json` if needed.
+
+## Validation
+
+Run the built-in code check:
+
+```bash
+npm test
+```
 
 ## Contributing
 
-If you have any idea to make it more interesting, feel free to send a PR, or create an issue for a feature request.
+Contributions are welcome. Feel free to open an issue or submit a pull request.
 
-Stay happy and keep the people you care about happy. :)
+## License
 
-
+This project is licensed under the MIT License.

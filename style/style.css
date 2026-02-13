@@ -9,7 +9,7 @@ body {
 
 .container {
   height: 100vh;
-  width: 100vh;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
   visibility: hidden;
@@ -114,6 +114,18 @@ body {
 
 .six {
   position: relative;
+}
+
+.floating-audio {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  width: 220px;
+  z-index: 1000;
+}
+
+.nine a {
+  color: inherit;
 }
 
 .six img {
